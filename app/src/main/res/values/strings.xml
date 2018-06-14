@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">RespostaFT</string>
+    <string-array name="grau">
+        <item>1 Grau</item>
+        <item>2 Grau</item>
+        <item>3 Grau</item>
+        <item>4 Grau</item>
+        <item>5 Grau</item>
+        <item>6 Grau</item>
+        <item>7 Grau</item>
+    </string-array>
+    <string-array name="sinais">
+        <item>Impulso</item>
+        <item>Degrau</item>
+        <item>Rampa</item>
+    </string-array>
+</resources>
