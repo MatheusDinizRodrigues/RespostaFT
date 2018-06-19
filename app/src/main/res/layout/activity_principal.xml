@@ -71,7 +71,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/ok"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="OK" />
@@ -86,8 +86,8 @@
             android:id="@+id/textView5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="FT ="
+            android:layout_weight="0.05"
+            android:text=" FT=              1"
             android:textSize="24sp" />
     </LinearLayout>
 
@@ -120,7 +120,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/btngera"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Gerar Grafico" />
