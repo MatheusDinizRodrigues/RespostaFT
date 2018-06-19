@@ -96,6 +96,7 @@ public class Principal extends Activity implements View.OnClickListener{
             else{
                 geragrafico.setText("Gerar Grafico");
                 geragrafico.setEnabled(false);
+                coeficientes.removeAll(coeficientes);
                 ok.setEnabled(true);
                 grauDenominador.setEnabled(true);
                 grauNumerador.setEnabled(true);
@@ -122,14 +123,18 @@ public class Principal extends Activity implements View.OnClickListener{
     }
     private LineGraphSeries<DataPoint> func2grau(double a,double b, double c){
         double x1,x2;
-        DataPoint[] dados = new DataPoint[1000];
+        DataPoint[] dados = new DataPoint[500];
         x1 = (-b + Math.sqrt(b*b-(4*a*c)))/(2*a);
         x2 = (-b - Math.sqrt(b*b-(4*a*c)))/(2*a);
         if(x1 != x2){
+            System.out.println("e diferente");
             double x = 0;
-            for(int i = 0; i<1000; i++){
+            double A = 1/(-1*x1+x2);
+            double B=  1/(-1*x2+x1);
+            for(int i = 0; i<500; i++){
                 x = x+0.01;
-                DataPoint d = new DataPoint(x,Math.pow(Math.E,-1*x1*x)+Math.pow(Math.E,-1*x2*x));
+                DataPoint d = new DataPoint(x,A*(Math.pow(Math.E,-1*x1*x))+B*(Math.pow(Math.E,-1*x2*x)));
+                System.out.println(Math.pow(Math.E,-1*x1*x)+Math.pow(Math.E,-1*x2*x));
                 dados[i]=d;
             }
             LineGraphSeries<DataPoint> resposta = new LineGraphSeries<DataPoint>(dados);
@@ -137,7 +142,7 @@ public class Principal extends Activity implements View.OnClickListener{
         }
         else{
             double x = 0;
-            for(int i = 0; i<1000; i++){
+            for(int i = 0; i<500; i++){
                 x = x+0.01;
                 DataPoint d = new DataPoint(x,x*Math.pow(Math.E,-1*x1*x));
                 dados[i]=d;
