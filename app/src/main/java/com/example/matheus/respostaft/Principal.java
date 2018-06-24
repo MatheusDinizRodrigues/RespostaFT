@@ -213,9 +213,35 @@ public class Principal extends Activity implements View.OnClickListener {
 
     }
     private LineGraphSeries<DataPoint> func3grau(double a, double b, double c,double d) {
-        double[] aux ={a,b,c,d};
-        Complex[] raizes = solver.solveAllComplex(aux,a);
+        System.out.println("A:"+a+"B:"+b+"C:"+c+"D:"+d);
+        double[] aux ={d,c,b,a};
+        double x = 0;
+        Complex[] raizes = solver.solveAllComplex(aux,0);
+        DataPoint[] dados = new DataPoint[700];
         if(raizes[0].getImaginary() == 0 && raizes[1].getImaginary()==0 && raizes[2].getImaginary() == 0){
+            if(raizes[0].getReal() != 0 && raizes[1].getReal() != 0 && raizes[2].getReal() != 0){
+                System.out.println("x1:"+raizes[0].getReal()+"x2:"+raizes[1].getReal()+"x3:"+raizes[2].getReal());
+                double a1 = 1/((raizes[0].getReal()+(-1*raizes[1].getReal()))*(raizes[0].getReal()+(-1*raizes[2].getReal())));
+                double a2 =  1/((raizes[1].getReal()+(-1*raizes[0].getReal()))*(raizes[1].getReal()+(-1*raizes[2].getReal())));
+                double a3 =  1/((raizes[2].getReal()+(-1*raizes[0].getReal()))*(raizes[2].getReal()+(-1*raizes[1].getReal())));
+                System.out.println("a1:"+a1+"a2:"+a2+"a3:"+a3);
+                for(int i = 0; i<700;i++){
+                    x = x + 0.01;
+                    DataPoint dado = new DataPoint(x,a1*Math.pow(Math.E,raizes[0].getReal()*x)+a2*Math.pow(Math.E,raizes[1].getReal()*x)+a3*Math.pow(Math.E,raizes[2].getReal()*x));
+                    dados[i] = dado;
+                }
+                LineGraphSeries<DataPoint> resposta = new LineGraphSeries<DataPoint>(dados);
+                return resposta;
+            }
+            else{
+                ArrayList<Double> vetor = new ArrayList<>();
+                for(int i = 0;i<3;i++){
+                    if(raizes[i].getReal() != 0){
+                        vetor.add(raizes[i].getReal());
+                    }
+                }
+
+            }
 
         }
         return null;
