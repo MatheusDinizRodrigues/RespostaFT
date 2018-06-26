@@ -240,6 +240,31 @@ public class Principal extends Activity implements View.OnClickListener {
                         vetor.add(raizes[i].getReal());
                     }
                 }
+                if(vetor.size() == 1){
+                    double a1 = 1/(vetor.get(0)*-1);
+                    double a2 = 1/(vetor.get(0)*vetor.get(0));
+                    for(int i = 0; i<700;i++){
+                        x = x + 0.01;
+                        DataPoint dado = new DataPoint(x,a1*x +a2*Math.pow(Math.E,vetor.get(0)*x));
+                        dados[i] = dado;
+                    }
+                    LineGraphSeries<DataPoint> resposta = new LineGraphSeries<DataPoint>(dados);
+                    return resposta;
+
+                }
+                if(vetor.size() == 2){
+                    double a1 = 1/(vetor.get(0)*vetor.get(1));
+                    double a2 = 1/(vetor.get(0)*vetor.get(0)-(vetor.get(0)*vetor.get(1)));
+                    double a3 = 1/(vetor.get(1)*vetor.get(1)-(vetor.get(1)*vetor.get(0)));
+                    for(int i = 0; i<700;i++){
+                        x = x + 0.01;
+                        DataPoint dado = new DataPoint(x,a1+a2*(Math.pow(Math.E,vetor.get(0)*x)+a3*(Math.pow(Math.E,vetor.get(1)))));
+                        dados[i] = dado;
+                    }
+                    LineGraphSeries<DataPoint> resposta = new LineGraphSeries<DataPoint>(dados);
+                    return resposta;
+
+                }
 
             }
 
